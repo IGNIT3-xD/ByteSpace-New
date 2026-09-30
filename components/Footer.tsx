@@ -126,7 +126,7 @@ export default function Footer() {
                 {/* Divider */}
                 <div className="border-t border-gray-200/80 py-8">
                     {/* Bottom Bar */}
-                    <div className="flex flex-col-reverse items-center justify-between gap-4 sm:flex-row text-xs text-[#6B7280] font-['Satoshi',sans-serif]">
+                    <div className="flex flex-col-reverse items-center justify-between gap-4 sm:flex-row text-xs text-[#6B7280] font-satoshi">
                         <p>© 2023 ByteSpace. All rights reserved.</p>
 
                         <div className="flex flex-wrap items-center justify-center gap-6">

@@ -1,5 +1,6 @@
-import Image from "next/image";
 import { BarChart3, Star } from "lucide-react";
+import Image from "next/image";
+import levelIcon from "@/public/level.png";
 
 // Avatar paths
 import av2 from "@/public/av2.png";
@@ -150,7 +151,9 @@ export default function Cards() {
                     gap-6
                     md:grid-cols-2
                     lg:grid-cols-3
-                    lg:gap-8
+                    lg:gap-10
+                    items-center
+                    justify-between
                 "
             >
                 {courses.map((course) => (
@@ -183,9 +186,7 @@ export default function Cards() {
                                 overflow-hidden
                                 rounded-[17px]
                                 bg-[#eeeeee]
-
                                 sm:rounded-[18px]
-
                                 md:aspect-[1.6]
                             "
                         >
@@ -204,42 +205,9 @@ export default function Cards() {
 
                             {/* Image information pills */}
                             <div
-                                className="
-        absolute
-        right-3
-        bottom-3
-        left-3
-        flex
-        items-center
-        justify-between
-        gap-2
-    "
-                            >
+                                className=" absolute right-3 bottom-3 left-3 flex items-center justify-between gap-2">
                                 {/* Lessons */}
-                                <span
-                                    className="
-            flex
-            h-6.25
-            items-center
-            rounded-full
-            border
-            border-white/30
-            bg-white/55
-            px-2.5
-            font-satoshi
-            text-[12px]
-            font-medium
-            whitespace-nowrap
-            text-[#4f4f4f]
-            shadow-[0_4px_16px_rgba(0,0,0,0.08)]
-            backdrop-blur-md
-            backdrop-saturate-150
-
-            sm:h-6.5
-            sm:px-3
-            sm:text-[11px]
-        "
-                                >
+                                <span className="flex h-6.25 items-center rounded-full border border-white/30 bg-white/55 px-2.5 font-satoshi text-[12px] font-medium whitespace-nowrap text-[#4f4f4f] shadow-[0_4px_16px_rgba(0,0,0,0.08)] backdrop-blur-md backdrop-saturate- sm:h-6.5 sm:px-3 sm:text-[11px]">
                                     {course.lessons}
                                 </span>
 
@@ -313,12 +281,11 @@ export default function Cards() {
                                         min-w-0
                                         truncate
                                         font-poppins
-                                        text-[22px]
+                                        text-[20px]
                                         leading-[1.2]
                                         font-semibold
                                         tracking-[-0.02em]
-                                        text-[#111111]
-
+                                        text-[#000000]
                                         sm:text-[18px]
                                     "
                                 >
@@ -336,17 +303,17 @@ export default function Cards() {
                                     <span
                                         className="
                                             font-satoshi
-                                            text-[15px]
+                                            text-[18px]
                                             leading-none
-                                            font-medium
-                                            text-[#565656]
+                                            font-regular
+                                            text-black/70
                                         "
                                     >
                                         {course.rating}
                                     </span>
 
                                     <Star
-                                        size={16}
+                                        size={24}
                                         strokeWidth={0}
                                         fill="#c8ccd1"
                                         className="text-[#c8ccd1]"
@@ -359,16 +326,15 @@ export default function Cards() {
                                 className="
                                     mt-1
                                     font-satoshi
-                                    text-[12px]
+                                    text-[14px]
                                     leading-none
                                     font-normal
-                                    text-[#999999]
+                                    text-[#4F4F4F]
                                     text-left
-                                    sm:text-[12px]
                                 "
                             >
                                 by{" "}
-                                <span className="text-[#2859f5]">
+                                <span className="text-[#003BE2]">
                                     {course.author}
                                 </span>
                             </p>
@@ -392,19 +358,19 @@ export default function Cards() {
                                         shrink-0
                                         items-center
                                         gap-1.5
-                                        rounded-full
-                                        bg-[#f3f3f3]
+                                        rounded-3xl
+                                        bg-[#F5F5F6]
                                         px-3
                                         font-satoshi
                                         text-[12px]
-                                        font-normal
-                                        text-[#5d5d5d]
+                                        font-medium
+                                        text-[#4B4C53]
                                     "
                                 >
-                                    <BarChart3
-                                        size={15}
-                                        strokeWidth={2}
-                                        className="text-[#60646a]"
+                                    <Image
+                                        src={levelIcon}
+                                        alt="Level"
+                                        className="size-4 object-contain"
                                     />
 
                                     <span>{course.level}</span>
@@ -440,21 +406,9 @@ export default function Cards() {
                             </div>
 
                             {/* =================================
-                                DIVIDER
-                            ================================= */}
-                            <div
-                                className="
-                                    mt-5
-                                    h-px
-                                    w-full
-                                    bg-[#eeeeee]
-                                "
-                            />
-
-                            {/* =================================
                                 PRICE
                             ================================= */}
-                            <div className="pt-3">
+                            <div className="pt-4">
                                 <div className="flex items-baseline">
                                     <span
                                         className="
@@ -463,7 +417,7 @@ export default function Cards() {
                                             leading-none
                                             font-semibold
                                             tracking-[-0.02em]
-                                            text-[#2861f5]
+                                            text-[#003BE2]
                                         "
                                     >
                                         {course.price}

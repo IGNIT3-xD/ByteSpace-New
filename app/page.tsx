@@ -14,8 +14,6 @@ const page = () => {
       <LogoBanner />
       <DiscoverSkills />
       <CTA />
-      {/* <GrowthSection /> */}
-      {/* <CreateCoursesSection /> */}
       <CombinedGrowthSection />
       <CreatorCTA />
       <CommunityReviews />
