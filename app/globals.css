@@ -18,9 +18,16 @@
     --foreground: #ededed;
   }
 }
+@layer components {
+  .container-main {
+    @apply mx-auto max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  .title-main {
+    @apply text-3xl sm:text-4xl lg:text-[44px] font-semibold text-[#040819] tracking-tight leading-tight font-poppins;
+  }
+
+  .subtitle-main {
+    @apply mt-4 text-sm sm:text-base lg:text-[18px] text-[#82868E] max-w-5xl mx-auto leading-relaxed font-normal font-satoshi;
+  }
 }

@@ -8,15 +8,18 @@ import yellowCorner from "@/public/Cone_2.png";
 import greenSpiral from "@/public/Frame.png";
 import smallSpiral from "@/public/Frame_1.png";
 import largeSpiral from "@/public/Frame_2.png";
+import Navbar from "./Navbar";
 
-const avatarFilters = [
-    "",
-    "hue-rotate(40deg)",
-    "hue-rotate(120deg) saturate(.75)",
-    "hue-rotate(205deg)",
-    "hue-rotate(305deg) saturate(.8)",
+const avatars = [
+    "/av1.png",
+    "/av2.png",
+    "/av3.png",
+    "/av4.png",
+    "/av5.png",
+    "/av6.png",
+    "/av7.png",
+    "/av8.png",
 ];
-
 export default function Hero() {
     return (
         <section className="relative h-svh w-full overflow-hidden">
@@ -29,6 +32,10 @@ export default function Hero() {
                 className="-z-10 object-cover"
             />
 
+            <div className="absolute inset-x-0 top-0 z-50">
+                <Navbar />
+            </div>
+
             <div className="relative mx-auto h-full w-[min(100%,154.7svh)] @container">
 
                 {/* Green spiral */}
@@ -37,7 +44,7 @@ export default function Hero() {
                     alt=""
                     className="
                         absolute top-[13%] left-[-14.5%] z-0 h-auto w-[18.8cqw]
-                        max-[699px]:top-[30%]
+                        max-[699px]:top-[14%]
                         max-[699px]:left-[-2%]
                         max-[699px]:w-[24cqw]
                         min-[700px]:max-[1023px]:top-[19%]
@@ -68,7 +75,7 @@ export default function Hero() {
                     priority
                     className="
                         absolute top-[13%] left-full z-0 h-auto w-[15cqw]
-                        max-[699px]:top-[30%]
+                        max-[699px]:top-[14%]
                         max-[699px]:left-[80%]
                         max-[699px]:w-[22cqw]
                         min-[700px]:max-[1023px]:top-[19%]
@@ -99,6 +106,7 @@ export default function Hero() {
                     priority
                     className="
                         absolute top-[62.5%] -left-5 z-10 h-auto w-[27cqw]
+                        max-[699px]:hidden
                         max-[699px]:top-[50%]
                         max-[699px]:left-[-5%]
                         max-[699px]:w-[34cqw]
@@ -115,6 +123,7 @@ export default function Hero() {
                     priority
                     className="
                         absolute top-[60.7%] left-[78.7%] z-0 h-auto w-[22cqw]
+                        max-[699px]:hidden
                         max-[699px]:top-[50%]
                         max-[699px]:left-[80%]
                         max-[699px]:w-[25cqw]
@@ -148,17 +157,17 @@ export default function Hero() {
                     className="
                         absolute top-[8%] left-1/2 z-40 w-[72cqw] -translate-x-1/2 text-center
 
-                        max-[699px]:top-[7%]
+                        max-[699px]:top-[25%]
                         max-[699px]:w-[88cqw]
 
-                        min-[700px]:max-[1023px]:top-[8%]
+                        min-[700px]:max-[1023px]:top-[20%]
                         min-[700px]:max-[1023px]:w-[80cqw]
                     "
                 >
                     <h1
                         id="hero-heading"
                         className="
-                            font-poppins m-0 text-[5.55cqw] leading-[1.02] font-semibold tracking-[-0.035em]
+                            font-poppins m-0 pt-5 text-6xl leading-[1.02] font-semibold text-white tracking-[-0.035em]
 
                             max-[699px]:text-[7.5cqw]
 
@@ -172,7 +181,7 @@ export default function Hero() {
 
                     <p
                         className="
-                            font-satoshi mt-[2.9cqw] text-[1.2cqw] leading-normal font-normal tracking-[-0.01em] whitespace-nowrap text-white/90
+                            font-satoshi mt-[2.9cqw] text-[18px] leading-normal font-normal tracking-[-0.01em] whitespace-nowrap text-[#E5E6E8]
 
                             max-[699px]:mx-auto
                             max-[699px]:mt-6
@@ -272,10 +281,10 @@ export default function Hero() {
                             type="submit"
                             className="
                                 h-full shrink-0 cursor-pointer rounded-full border-0
-                                bg-[#caff00]
+                                bg-[#caff00] font-satoshi
                                 px-[1.9cqw]
-                                text-[1.02cqw]
-                                font-semibold text-[#07123d]
+                                text-[14px]
+                                font-medium text-[#07123d]
                                 transition-transform
                                 hover:-translate-y-px
                                 focus-visible:outline-2
@@ -298,7 +307,7 @@ export default function Hero() {
                 <div
                     className="
                         absolute top-[58.5%] left-[27.9%] z-10 w-[14.4cqw]
-                        rounded-[.8cqw] bg-white/98
+                        rounded-2xl bg-white/98
                         px-[1.15cqw] py-[1.25cqw]
                         text-[#12182d]
                         shadow-[0_10px_24px_rgba(2,27,117,.1)]
@@ -320,7 +329,7 @@ export default function Hero() {
                 >
                     <span
                         className="
-                            font-poppins block text-[1.02cqw] leading-none font-medium
+                            font-satoshi font-medium text-[16px]
 
                             max-[699px]:text-[9px]
 
@@ -332,8 +341,8 @@ export default function Hero() {
 
                     <small
                         className="
-                            font-satoshi mt-[.45cqw] block text-[.58cqw]
-                            leading-none whitespace-nowrap text-[#9b9da5]
+                            font-satoshi font-normal mt-[.45cqw] block text-[8px]
+                            leading-none whitespace-nowrap text-gray-700
 
                             max-[699px]:mt-1
                             max-[699px]:text-[6px]
@@ -342,7 +351,7 @@ export default function Hero() {
                             min-[700px]:max-[1023px]:text-[.85cqw]
                         "
                     >
-                        100 Courses&nbsp;&nbsp; • &nbsp;&nbsp;1000+ Students
+                        200 Courses&nbsp;&nbsp; • &nbsp;&nbsp;1000+ Students
                     </small>
                 </div>
 
@@ -350,7 +359,7 @@ export default function Hero() {
                 <div
                     className="
                         absolute top-[59.6%] left-[58.4%] z-30 w-[16.2cqw]
-                        rounded-[.8cqw] bg-white/98
+                        rounded-2xl bg-white/98
                         px-[1.25cqw] pt-[1.45cqw] pb-[1.6cqw]
                         text-[#11172b]
                         shadow-[0_10px_24px_rgba(2,27,117,.1)]
@@ -375,7 +384,7 @@ export default function Hero() {
                 >
                     <span
                         className="
-                            font-satoshi block text-[.9cqw] leading-none font-normal
+                            font-satoshi font-medium text-[16px]
 
                             max-[699px]:text-[8px]
 
@@ -387,7 +396,7 @@ export default function Hero() {
 
                     <strong
                         className="
-                            mt-[.55cqw] block text-[2.8cqw]
+                            mt-[.55cqw] block text-[32px]
                             leading-[.9] font-semibold font-poppins
 
                             max-[699px]:mt-1
@@ -441,7 +450,7 @@ export default function Hero() {
                     className="
                         absolute bottom-[4%] left-[22.5%] z-40
                         w-[18.2cqw]
-                        rounded-[.8cqw] bg-white/98
+                        rounded-2xl bg-white/98
                         px-[1.1cqw] py-[1.3cqw]
                         text-[#11172b]
                         shadow-[0_10px_24px_rgba(2,27,117,.1)]
@@ -463,8 +472,8 @@ export default function Hero() {
                 >
                     <span
                         className="
-                            font-poppins block text-[1cqw]
-                            leading-none font-medium
+                            font-satoshi font-medium text-[16px]
+                            leading-none
 
                             max-[699px]:text-[9px]
 
@@ -499,49 +508,28 @@ export default function Hero() {
                         "
                     >
                         <div className="flex pl-[.2cqw]" aria-hidden="true">
-                            {avatarFilters.map((filter, index) => (
-                                <i
-                                    key={filter || "original"}
+                            {avatars.slice(0, 8).map((avatar, index) => (
+                                <Image
+                                    key={avatar}
+                                    src={avatar}
+                                    alt=""
+                                    width={43}
+                                    height={43}
                                     className="
-                                        ml-[-0.45cqw] block size-[2.35cqw]
-                                        rounded-full border-[1.5px] border-white
-                                        bg-[#d9dce4]
-                                        bg-[url('/images/bytespace-model.png')]
-                                        bg-size-[4.6cqw_auto]
-                                        bg-position-[50%_.1cqw]
-                                        bg-no-repeat
-                                        first:ml-0
+                ml-[-0.45cqw] block size-[2.35cqw]
+                rounded-full border-[1.5px] border-white
+                object-cover
+                first:ml-0
 
-                                        max-[699px]:-ml-1
-                                        max-[699px]:size-6
-                                        max-[699px]:bg-size-[46px_auto]
-                                        max-[699px]:bg-position-[50%_1px]
+                max-[699px]:-ml-1
+                max-[699px]:size-6
 
-                                        min-[700px]:max-[1023px]:ml-[-0.6cqw]
-                                        min-[700px]:max-[1023px]:size-[3.5cqw]
-                                        min-[700px]:max-[1023px]:bg-size-[6.5cqw_auto]
-                                    "
-                                    style={{ filter }}
-                                    data-avatar={index + 1}
+                min-[700px]:max-[1023px]:ml-[-0.6cqw]
+                min-[700px]:max-[1023px]:size-[3.5cqw]
+            "
                                 />
                             ))}
                         </div>
-
-                        <b
-                            className="
-                                grid size-[3cqw] place-items-center
-                                rounded-full bg-[#caff00]
-                                text-[.72cqw] font-semibold
-
-                                max-[699px]:size-8
-                                max-[699px]:text-[8px]
-
-                                min-[700px]:max-[1023px]:size-[4cqw]
-                                min-[700px]:max-[1023px]:text-[1cqw]
-                            "
-                        >
-                            2K+
-                        </b>
                     </div>
                 </div>
             </div>
