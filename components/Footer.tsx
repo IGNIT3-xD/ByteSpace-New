@@ -29,7 +29,7 @@ const footerColumn3 = [
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-white pt-16 border-t border-gray-100">
+        <footer className="w-full bg-white pt-16 border-t border-[#CED0D3]">
             <div className="container-main">
                 {/* Main Footer Layout */}
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8 pb-12">
