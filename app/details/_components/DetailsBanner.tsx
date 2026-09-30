@@ -26,6 +26,7 @@ import sneakPeak3 from "@/public/sneak_peak_3.png";
 import sneakPeak4 from "@/public/sneak_peak_4.png";
 import LessonsTab from "./Lessons";
 import ReviewsTab from "./Reviews";
+import Link from "next/link";
 
 const tabTriggerClass =
     "rounded-full px-6 py-2.5 text-xs sm:text-sm font-semibold text-[#4B4C53] transition-all cursor-pointer data-[state=active]:bg-[#D4FB20] data-[state=active]:text-[#111827] data-[state=active]:shadow-sm";
@@ -133,7 +134,9 @@ function PriceCard() {
                 type="button"
                 className="mt-5 rounded-full border border-gray-300 px-5 py-2 text-[16px] font-semibold text-[#4B4C53] hover:bg-gray-50 transition-colors cursor-pointer"
             >
-                See Full Profile
+                <Link href="/creator_profile" className="text-[16px] font-semibold text-[#4B4C53] hover:underline">
+                    See Full Profile
+                </Link>
             </button>
         </div>
     );
