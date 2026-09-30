@@ -18,9 +18,7 @@ const Navbar = () => {
                 } md:bg-transparent`}
         >
             <nav className="mx-auto flex h-16 items-center justify-between container-main">
-                {/* =======================
-            LOGO
-        ======================== */}
+                {/* =======================LOGO======================== */}
                 <Link href="/" onClick={closeMenu} className="shrink-0">
                     <Image
                         src="/Header_Logo.png"
@@ -32,9 +30,7 @@ const Navbar = () => {
                     />
                 </Link>
 
-                {/* =======================
-            DESKTOP NAVIGATION
-        ======================== */}
+                {/* =======================DESKTOP NAVIGATION======================== */}
                 <div className="hidden items-center gap-8 md:flex">
                     <Link
                         href="/"
@@ -58,9 +54,7 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {/* =======================
-            DESKTOP RIGHT SIDE
-        ======================== */}
+                {/* =======================DESKTOP RIGHT SIDE======================== */}
                 <div className="hidden items-center gap-6 md:flex">
                     <Link
                         href="/login"
@@ -70,7 +64,7 @@ const Navbar = () => {
                     </Link>
 
                     <Link
-                        href="/join-us"
+                        href="/register"
                         className="text-sm text-white/80 transition-colors hover:text-white"
                     >
                         Join Us
@@ -151,7 +145,7 @@ const Navbar = () => {
 
                         {/* Join Us */}
                         <Link
-                            href="/join-us"
+                            href="/register"
                             onClick={closeMenu}
                             className="text-sm text-[#07123d] transition-colors hover:text-[#5165ff]"
                         >

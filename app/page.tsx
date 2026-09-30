@@ -5,6 +5,7 @@ import CTA from "@/components/Cta"
 import CombinedGrowthSection from "@/components/Combined"
 import CreatorCTA from "@/components/CreatorCTA"
 import CommunityReviews from "@/components/CommunityReviews"
+import Footer from "@/components/Footer"
 
 const page = () => {
   return (
@@ -18,6 +19,7 @@ const page = () => {
       <CombinedGrowthSection />
       <CreatorCTA />
       <CommunityReviews />
+      <Footer />
     </div>
   )
 }
