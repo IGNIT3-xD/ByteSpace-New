@@ -2,7 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { toast } from "sonner";
+import { authClient } from "@/lib/auth-client";
 import facebookIcon from "@/public/facebook.png";
 import googleIcon from "@/public/google.png";
 
@@ -12,6 +16,9 @@ interface LoginInput {
 }
 
 export default function LoginPage() {
+    const router = useRouter();
+    const [isSocialLoading, setIsSocialLoading] = useState(false);
+
     const {
         register,
         handleSubmit,
@@ -19,7 +26,38 @@ export default function LoginPage() {
     } = useForm<LoginInput>();
 
     const onSubmit: SubmitHandler<LoginInput> = async (data) => {
-        console.log("Login Payload:", data);
+        await authClient.signIn.email(
+            {
+                email: data.email,
+                password: data.password,
+            },
+            {
+                onSuccess: () => {
+                    toast.success("Signed in successfully! Redirecting...");
+                    router.push("/");
+                },
+                onError: (ctx) => {
+                    toast.error(ctx.error.message || "Invalid email or password.");
+                },
+            }
+        );
+    };
+
+    const handleGoogleSignIn = async () => {
+        setIsSocialLoading(true);
+        try {
+            await authClient.signIn.social({
+                provider: "google",
+                callbackURL: "/",
+            });
+        } catch (error) {
+            toast.error("Failed to connect with Google.");
+            setIsSocialLoading(false);
+        }
+    };
+
+    const handleFacebookClick = () => {
+        toast.info("Facebook login is currently not available.");
     };
 
     return (
@@ -29,16 +67,14 @@ export default function LoginPage() {
                 <span className="text-xs font-semibold text-[#003BE2] tracking-wide font-['Satoshi',sans-serif]">
                     Sign In
                 </span>
-                <h2 className="title-main">
-                    Welcome Back
-                </h2>
+                <h2 className="title-main">Welcome Back</h2>
             </div>
 
             {/* Form */}
             <form onSubmit={handleSubmit(onSubmit)} className="mt-8 flex flex-col gap-5">
                 {/* Email */}
                 <div className="flex flex-col gap-1.5">
-                    <label className="text-lg font-medium text-[#4B5563] font-['Satoshi',sans-serif]">
+                    <label className="text-[14px] font-medium text-[#4B5563] font-['Satoshi',sans-serif]">
                         Email
                     </label>
                     <input
@@ -63,7 +99,7 @@ export default function LoginPage() {
 
                 {/* Password */}
                 <div className="flex flex-col gap-1.5">
-                    <label className="text-lg font-medium text-[#4B5563] font-['Satoshi',sans-serif]">
+                    <label className="text-[14px] font-medium text-[#4B5563] font-['Satoshi',sans-serif]">
                         Password
                     </label>
                     <input
@@ -86,7 +122,7 @@ export default function LoginPage() {
                 <div className="mt-2 flex justify-end">
                     <button
                         type="submit"
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || isSocialLoading}
                         className="rounded-full bg-[#D4FB20] px-8 py-3 text-sm font-semibold text-[#111827] hover:bg-[#c2ea13] transition-colors cursor-pointer shadow-sm font-['Satoshi',sans-serif] disabled:opacity-50"
                     >
                         {isSubmitting ? "Signing in..." : "Sign In"}
@@ -107,6 +143,7 @@ export default function LoginPage() {
                 {/* Facebook Button */}
                 <button
                     type="button"
+                    onClick={handleFacebookClick}
                     aria-label="Sign in with Facebook"
                     className="flex size-12 items-center justify-center rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors cursor-pointer shadow-sm"
                 >
@@ -121,8 +158,10 @@ export default function LoginPage() {
                 {/* Google Button */}
                 <button
                     type="button"
+                    disabled={isSocialLoading || isSubmitting}
+                    onClick={handleGoogleSignIn}
                     aria-label="Sign in with Google"
-                    className="flex size-12 items-center justify-center rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors cursor-pointer shadow-sm"
+                    className="flex size-12 items-center justify-center rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors cursor-pointer shadow-sm disabled:opacity-50"
                 >
                     <Image
                         src={googleIcon}

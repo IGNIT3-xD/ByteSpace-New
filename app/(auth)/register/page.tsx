@@ -1,7 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { toast } from "sonner";
+import { authClient } from "@/lib/auth-client";
 
 interface RegisterInput {
     fullName: string;
@@ -10,6 +14,9 @@ interface RegisterInput {
 }
 
 export default function RegisterPage() {
+    const router = useRouter();
+    const [isSocialLoading, setIsSocialLoading] = useState(false);
+
     const {
         register,
         handleSubmit,
@@ -17,15 +24,29 @@ export default function RegisterPage() {
     } = useForm<RegisterInput>();
 
     const onSubmit: SubmitHandler<RegisterInput> = async (data) => {
-        console.log("Registration Payload:", data);
-        // Add authentication backend API call here
+        await authClient.signUp.email(
+            {
+                email: data.email,
+                password: data.password,
+                name: data.fullName,
+            },
+            {
+                onSuccess: () => {
+                    toast.success("Account created successfully! Redirecting...");
+                    router.push("/");
+                },
+                onError: (ctx) => {
+                    toast.error(ctx.error.message || "Failed to create account. Please try again.");
+                },
+            }
+        );
     };
 
     return (
         <div className="w-full max-w-120 rounded-4xl bg-white p-8 sm:p-12 shadow-2xl border border-white/20">
             {/* Header */}
             <div>
-                <span className="text-xs font-nomral text-[#003BE2] tracking-wide font-satoshi">
+                <span className="text-xs font-normal text-[#003BE2] tracking-wide font-satoshi">
                     Create an Account
                 </span>
                 <h2 className="title-main">
@@ -33,10 +54,10 @@ export default function RegisterPage() {
                     <br />
                     ByteSpace
                 </h2>
-            </div>
+            </div>            
 
             {/* Form */}
-            <form onSubmit={handleSubmit(onSubmit)} className="mt-8 flex flex-col gap-5">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 mt-5">
                 {/* Full Name */}
                 <div className="flex flex-col gap-1.5">
                     <label className="text-[14px] font-medium text-[#4B5563] font-['Satoshi',sans-serif]">
@@ -110,7 +131,7 @@ export default function RegisterPage() {
                 <div className="mt-2 flex justify-end">
                     <button
                         type="submit"
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || isSocialLoading}
                         className="rounded-full bg-[#D4FB20] px-8 py-3 text-sm font-semibold text-[#111827] hover:bg-[#c2ea13] transition-colors cursor-pointer shadow-sm font-['Satoshi',sans-serif] disabled:opacity-50"
                     >
                         {isSubmitting ? "Submitting..." : "Continue"}
@@ -119,7 +140,7 @@ export default function RegisterPage() {
             </form>
 
             {/* Footer link */}
-            <div className="mt-10 text-center text-xs text-[#6B7280] font-['Satoshi',sans-serif]">
+            <div className="mt-8 text-center text-xs text-[#6B7280] font-['Satoshi',sans-serif]">
                 Already have an account?{" "}
                 <Link
                     href="/login"

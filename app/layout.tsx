@@ -3,8 +3,9 @@ import { Poppins, Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -32,7 +33,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={cn("h-full", "antialiased", poppins.variable, satoshi.variable, "font-sans", inter.variable)}
     >
       <body className="min-h-full flex flex-col">
-        <div className="flex-1">{children}</div>
+        <div className="flex-1">
+          {children}
+          <Toaster position="top-right" />
+        </div>
       </body>
     </html>
   );
