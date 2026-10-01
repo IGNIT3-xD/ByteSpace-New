@@ -1,4 +1,3 @@
-// components/CourseGrid.tsx
 import { Course } from "@prisma/client";
 import CourseCard from "./CourseCard";
 

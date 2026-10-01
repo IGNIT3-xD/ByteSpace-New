@@ -27,7 +27,6 @@ export default async function Page({ searchParams }: PageProps) {
     const limit = 9;
     const skip = (page - 1) * limit;
 
-    // Show fallback empty state if a non-Featured category is selected
     if (category !== 'Featured') {
         return (
             <main>
@@ -67,15 +66,22 @@ export default async function Page({ searchParams }: PageProps) {
         orderBy = { rating: 'desc' };
     }
 
-    const [courses, totalCourses] = await Promise.all([
-        prisma.course.findMany({
-            where,
-            orderBy,
-            take: limit,
-            skip: skip,
-        }),
-        prisma.course.count({ where }),
-    ]);
+    let courses: any[] = [];
+    let totalCourses = 0;
+
+    try {
+        [courses, totalCourses] = await Promise.all([
+            prisma.course.findMany({
+                where,
+                orderBy,
+                take: limit,
+                skip: skip,
+            }),
+            prisma.course.count({ where }),
+        ]);
+    } catch (error) {
+        console.error("Database error while loading courses:", error);
+    }
 
     const totalPages = Math.ceil(totalCourses / limit);
 
@@ -86,7 +92,9 @@ export default async function Page({ searchParams }: PageProps) {
             <div className="pb-10">
                 <CourseGrid courses={courses} />
             </div>
-            <Pagination totalPages={totalPages} currentPage={page} />
+            {totalPages > 0 && (
+                <Pagination totalPages={totalPages} currentPage={page} />
+            )}
             <Footer />
         </main>
     );
