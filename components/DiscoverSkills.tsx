@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Cards from "@/components/Cards";
+import CourseCard, { Course } from "./CourseCard";
 
 const categoriesRow1 = [
     { name: "Featured", slug: "featured" },
@@ -30,7 +30,11 @@ const categoriesRow3 = [
     { name: "Cooking", slug: "cooking" },
 ];
 
-export default function DiscoverSkills() {
+interface DiscoverSkillsProps {
+    courses: Course[];
+}
+
+export default function DiscoverSkills({ courses }: DiscoverSkillsProps) {
     const [activeCategory, setActiveCategory] = useState("featured");
 
     const renderPill = (cat: { name: string; slug: string }) => {
@@ -40,8 +44,8 @@ export default function DiscoverSkills() {
                 key={cat.slug}
                 onClick={() => setActiveCategory(cat.slug)}
                 className={`px-5 py-2.5 rounded-full text-sm font-medium transition-colors cursor-pointer border-0 font-['Satoshi',sans-serif] ${isActive
-                    ? "bg-[#D4FB20] text-[#111827] font-semibold"
-                    : "bg-[#F3F4F6] text-[#4B5563] hover:bg-[#E5E7EB] hover:text-[#111827]"
+                        ? "bg-[#D4FB20] text-[#111827] font-semibold"
+                        : "bg-[#F3F4F6] text-[#4B5563] hover:bg-[#E5E7EB] hover:text-[#111827]"
                     }`}
             >
                 {cat.name}
@@ -90,7 +94,14 @@ export default function DiscoverSkills() {
                     </div>
                 </div>
 
-                <Cards />
+                {/* Course Grid */}
+                <div className="pt-10">
+                    <div className="mx-auto grid w-full max-w-285 grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-10 items-center justify-between">
+                        {courses.map((course) => (
+                            <CourseCard key={course.id} course={course} />
+                        ))}
+                    </div>
+                </div>
             </div>
         </section>
     );

@@ -63,3 +63,18 @@ model Verification {
 
     @@map("verification")
 }
+
+model Course {
+    id          String   @id @default(cuid())
+    title       String
+    author      String
+    rating      String   @default("4.5")
+    price       String
+    pricingType String   @default("/ lifetime")
+    lessons     String
+    duration    String
+    comments    String
+    level       String   @default("Beginner")
+    image       String
+    createdAt   DateTime @default(now())
+}

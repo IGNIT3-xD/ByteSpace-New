@@ -1,12 +1,16 @@
-// prisma.config.ts
-import { config } from "dotenv";
+import "dotenv/config";
 import { defineConfig, env } from "prisma/config";
+import { config } from "dotenv";
 
-// Load environment variables specifically from .env.local
+// Explicitly load .env.local for Next.js
 config({ path: ".env.local" });
 
 export default defineConfig({
   schema: "prisma/schema.prisma",
+  migrations: {
+    path: "prisma/migrations",
+    seed: "tsx prisma/seed.ts",
+  },
   datasource: {
     url: env("DATABASE_URL"),
   },

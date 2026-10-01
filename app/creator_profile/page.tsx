@@ -2,6 +2,7 @@ import Footer from "@/components/Footer"
 import CreatorProfileHero from "./_components/ProfileBanner"
 import TopBarFilter from "../courses/_components/TopBarFilter"
 import Cards from "@/components/Cards"
+import CourseGrid from "@/components/CourseGrid"
 
 const page = () => {
     return (
@@ -9,7 +10,8 @@ const page = () => {
             <CreatorProfileHero />
             <div className="container-main my-16">
                 <TopBarFilter />
-                <Cards />
+                {/* <Cards /> */}
+                <CourseGrid />
             </div>
             <Footer />
         </div>
