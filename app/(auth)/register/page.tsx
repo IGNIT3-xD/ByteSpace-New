@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
@@ -15,7 +15,15 @@ interface RegisterInput {
 
 export default function RegisterPage() {
     const router = useRouter();
+    const { data: session, isPending: isSessionLoading } = authClient.useSession();
     const [isSocialLoading, setIsSocialLoading] = useState(false);
+
+    // Redirect signed-in users away from the registration page
+    useEffect(() => {
+        if (!isSessionLoading && session) {
+            router.replace("/courses");
+        }
+    }, [session, isSessionLoading, router]);
 
     const {
         register,
@@ -42,6 +50,11 @@ export default function RegisterPage() {
         );
     };
 
+    // Prevent screen flicker while checking session state
+    if (isSessionLoading || session) {
+        return null;
+    }
+
     return (
         <div className="w-full max-w-120 rounded-4xl bg-white p-8 sm:p-12 shadow-2xl border border-white/20">
             {/* Header */}
@@ -54,7 +67,7 @@ export default function RegisterPage() {
                     <br />
                     ByteSpace
                 </h2>
-            </div>            
+            </div>
 
             {/* Form */}
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 mt-5">

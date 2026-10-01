@@ -1,26 +1,27 @@
+// app/courses/_components/PaginationButtons.tsx
 "use client";
 
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface PaginationProps {
-    totalPages?: number;
-    initialPage?: number;
-    onPageChange?: (page: number) => void;
+    totalPages: number;
+    currentPage: number;
 }
 
 export default function Pagination({
-    totalPages = 5,
-    initialPage = 1,
-    onPageChange,
+    totalPages,
+    currentPage,
 }: PaginationProps) {
-    const [currentPage, setCurrentPage] = useState(initialPage);
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
+    if (totalPages <= 1) return null;
 
     const handlePageChange = (page: number) => {
         if (page < 1 || page > totalPages) return;
-        setCurrentPage(page);
-        if (onPageChange) {
-            onPageChange(page);
-        }
+        const params = new URLSearchParams(searchParams.toString());
+        params.set("page", page.toString());
+        router.push(`?${params.toString()}`);
     };
 
     return (
@@ -57,7 +58,7 @@ export default function Pagination({
                             type="button"
                             onClick={() => handlePageChange(page)}
                             className={`text-base font-bold transition-colors cursor-pointer ${isActive
-                                    ? "text-[#C2C4C8]"
+                                    ? "text-[#003BE2] underline"
                                     : "text-[#1F2937] hover:text-[#000000]"
                                 }`}
                         >

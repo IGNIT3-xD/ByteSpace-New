@@ -1,7 +1,7 @@
+import { Suspense } from "react"
 import Footer from "@/components/Footer"
 import CreatorProfileHero from "./_components/ProfileBanner"
 import TopBarFilter from "../courses/_components/TopBarFilter"
-import Cards from "@/components/Cards"
 import CourseGrid from "@/components/CourseGrid"
 
 const page = () => {
@@ -9,9 +9,11 @@ const page = () => {
         <div>
             <CreatorProfileHero />
             <div className="container-main my-16">
-                <TopBarFilter />
+                <Suspense fallback={<div className="py-8 text-center text-gray-400">Loading filters...</div>}>
+                    <TopBarFilter />
+                </Suspense>
                 {/* <Cards /> */}
-                <CourseGrid />
+                <CourseGrid courses={[]} />
             </div>
             <Footer />
         </div>

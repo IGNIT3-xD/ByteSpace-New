@@ -1,6 +1,34 @@
+// app/courses/_components/CourseBanner.tsx
+"use client";
+
 import Navbar from "@/components/Navbar";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useTransition } from "react";
 
 export default function CourseBanner() {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const [isPending, startTransition] = useTransition();
+
+    const currentSearch = searchParams.get("q") || "";
+
+    const handleSearchChange = (term: string) => {
+        const params = new URLSearchParams(searchParams.toString());
+
+        if (term) {
+            params.set("q", term);
+        } else {
+            params.delete("q");
+        }
+
+        // Reset to first page on search change
+        params.set("page", "1");
+
+        startTransition(() => {
+            router.push(`?${params.toString()}`);
+        });
+    };
+
     return (
         <div className="relative w-full bg-cover bg-center bg-no-repeat bg-[url('/Hero-bg.webp')] pt-6 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-8 text-white">
             {/* Navigation Bar */}
@@ -30,7 +58,9 @@ export default function CourseBanner() {
                         </div>
                         <input
                             type="text"
-                            placeholder="Search"
+                            defaultValue={currentSearch}
+                            onChange={(e) => handleSearchChange(e.target.value)}
+                            placeholder="Search by title..."
                             className="w-full rounded-full bg-white py-3.5 pl-12 pr-6 text-sm text-[#111827] placeholder-[#9CA3AF] focus:outline-none shadow-lg font-['Satoshi',sans-serif]"
                         />
                     </div>

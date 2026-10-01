@@ -1,3 +1,7 @@
+"use client";
+
+import { useState, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import heroBackground from "@/public/Hero-bg.webp";
 import model from "@/public/bytespace-model.png";
@@ -20,7 +24,20 @@ const avatars = [
     "/av7.png",
     "/av8.png",
 ];
+
 export default function Hero() {
+    const [searchQuery, setSearchQuery] = useState("");
+    const router = useRouter();
+
+    const handleSearch = (e: FormEvent) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            router.push(`/courses?q=${encodeURIComponent(searchQuery.trim())}`);
+        } else {
+            router.push("/courses");
+        }
+    };
+
     return (
         <section className="relative h-svh w-full overflow-hidden">
             <Image
@@ -202,6 +219,7 @@ export default function Hero() {
 
                     <form
                         role="search"
+                        onSubmit={handleSearch}
                         className="
                             mx-auto mt-[3.95cqw] flex h-[3.7cqw] w-[40.3cqw] items-center gap-[1.1cqw]
 
@@ -253,6 +271,8 @@ export default function Hero() {
                             <input
                                 id="course-search"
                                 type="search"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
                                 placeholder="Course, topic, creator"
                                 className="
                                     h-full w-full rounded-full border-0 bg-white
@@ -508,7 +528,7 @@ export default function Hero() {
                         "
                     >
                         <div className="flex pl-[.2cqw]" aria-hidden="true">
-                            {avatars.slice(0, 8).map((avatar, index) => (
+                            {avatars.slice(0, 8).map((avatar) => (
                                 <Image
                                     key={avatar}
                                     src={avatar}

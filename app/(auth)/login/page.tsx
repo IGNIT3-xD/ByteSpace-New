@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
@@ -17,7 +17,15 @@ interface LoginInput {
 
 export default function LoginPage() {
     const router = useRouter();
+    const { data: session, isPending: isSessionLoading } = authClient.useSession();
     const [isSocialLoading, setIsSocialLoading] = useState(false);
+
+    // Redirect signed-in users away from the login page
+    useEffect(() => {
+        if (!isSessionLoading && session) {
+            router.replace("/courses");
+        }
+    }, [session, isSessionLoading, router]);
 
     const {
         register,
@@ -59,6 +67,11 @@ export default function LoginPage() {
     const handleFacebookClick = () => {
         toast.info("Facebook login is currently not available.");
     };
+
+    // Prevent screen flicker while checking session state
+    if (isSessionLoading || session) {
+        return null;
+    }
 
     return (
         <div className="w-full max-w-120 rounded-4xl bg-white p-8 sm:p-12 shadow-2xl border border-white/20">
