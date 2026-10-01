@@ -77,4 +77,6 @@ model Course {
     level       String   @default("Beginner")
     image       String
     createdAt   DateTime @default(now())
+
+    @@map("course")
 }

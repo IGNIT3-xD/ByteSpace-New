@@ -162,10 +162,19 @@ const initialCourses = [
 
 async function main() {
   console.log("Seeding courses...");
+  const existing = await prisma.course.findMany({ select: { title: true } });
+  const existingTitles = new Set(existing.map((c) => c.title));
+  const newCourses = initialCourses.filter((c) => !existingTitles.has(c.title));
+
+  if (newCourses.length === 0) {
+    console.log("Courses already seeded, skipping.");
+    return;
+  }
+
   await prisma.course.createMany({
-    data: initialCourses,
+    data: newCourses,
   });
-  console.log("Seeding complete!");
+  console.log(`Seeded ${newCourses.length} new course(s). Seeding complete!`);
 }
 
 main()
