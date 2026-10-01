@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Check } from "lucide-react";
-import frameImg from "@/public/Frame 12.png";
+import frameImg from "@/public/Frame 12.webp";
 
 const features = [
     "Share Your Expertise",
@@ -22,7 +22,6 @@ export default function CreateCoursesSection() {
                                 src={frameImg}
                                 alt="Create and Manage Courses Easily"
                                 className="h-auto w-full object-contain drop-shadow-md"
-                                priority
                             />
                         </div>
                     </div>

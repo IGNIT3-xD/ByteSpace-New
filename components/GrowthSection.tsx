@@ -1,5 +1,5 @@
 import Image from "next/image";
-import frameImg from "@/public/Frame 11.png";
+import frameImg from "@/public/Frame 11.webp";
 
 const stats = [
     { value: "12K", label: "Students" },
@@ -49,7 +49,6 @@ export default function GrowthSection() {
                                 src={frameImg}
                                 alt="Your Path to Professional Growth"
                                 className="h-auto w-full object-contain drop-shadow-md"
-                                priority
                             />
                         </div>
                     </div>

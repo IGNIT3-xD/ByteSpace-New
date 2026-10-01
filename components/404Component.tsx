@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import NotFoundGraphic from "@/public/404.png";
+import NotFoundGraphic from "@/public/404.webp";
 import Navbar from "@/components/Navbar";
 
 export default function NotFoundPage() {

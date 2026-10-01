@@ -42,7 +42,6 @@ export default function Footer() {
                                 src={logoInverted}
                                 alt="ByteSpace"
                                 className="h-9 w-auto object-contain"
-                                priority
                             />
                         </Link>
 

@@ -16,6 +16,8 @@ interface PageProps {
     }>;
 }
 
+export const revalidate = 300;
+
 export default async function Page({ searchParams }: PageProps) {
     const params = await searchParams;
     const page = Number(params.page) || 1;

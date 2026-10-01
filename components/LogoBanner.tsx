@@ -27,7 +27,6 @@ export default function LogoBanner() {
                             src={logo.src}
                             alt={logo.alt}
                             className="h-7 sm:h-9 w-auto object-contain"
-                            priority
                         />
                     </div>
                 ))}

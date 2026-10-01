@@ -8,6 +8,8 @@ import CommunityReviews from "@/components/CommunityReviews";
 import Footer from "@/components/Footer";
 import { prisma } from "@/lib/prisma";
 
+export const revalidate = 300;
+
 export default async function Page() {
   const courses = await prisma.course.findMany({
     take: 6,

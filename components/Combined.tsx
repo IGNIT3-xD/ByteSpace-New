@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Check } from "lucide-react";
-import frameImg11 from "@/public/Frame 11.png";
-import frameImg12 from "@/public/Frame 12.png";
+import frameImg11 from "@/public/Frame 11.webp";
+import frameImg12 from "@/public/Frame 12.webp";
 
 const stats = [
     { value: "12K", label: "Students" },
@@ -56,7 +56,6 @@ export default function CombinedGrowthSection() {
                                 src={frameImg11}
                                 alt="Your Path to Professional Growth"
                                 className="h-auto w-full object-contain drop-shadow-md"
-                                priority
                             />
                         </div>
                     </div>
@@ -73,7 +72,6 @@ export default function CombinedGrowthSection() {
                                 src={frameImg12}
                                 alt="Create and Manage Courses Easily"
                                 className="h-auto w-full object-contain drop-shadow-md"
-                                priority
                             />
                         </div>
                     </div>

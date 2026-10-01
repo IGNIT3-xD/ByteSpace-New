@@ -4,7 +4,7 @@ import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import heroBackground from "@/public/Hero-bg.webp";
-import model from "@/public/bytespace-model.png";
+import model from "@/public/bytespace-model.webp";
 import ellipse from "@/public/Ellipse_7.png";
 import ring from "@/public/Cone.png";
 import triangle from "@/public/Cone_1.png";
@@ -15,13 +15,13 @@ import largeSpiral from "@/public/Frame_2.png";
 import Navbar from "./Navbar";
 
 const avatars = [
-    "/av1.png",
+    "/av1.webp",
     "/av2.png",
-    "/av3.png",
+    "/av3.webp",
     "/av4.png",
-    "/av5.png",
+    "/av5.webp",
     "/av6.png",
-    "/av7.png",
+    "/av7.webp",
     "/av8.png",
 ];
 
@@ -74,7 +74,6 @@ export default function Hero() {
                 <Image
                     src={smallSpiral}
                     alt=""
-                    priority
                     className="
                         absolute top-[44.5%] left-[11.7%] z-0 h-auto w-[11.5cqw]
                         max-[699px]:hidden
@@ -89,7 +88,6 @@ export default function Hero() {
                 <Image
                     src={yellowCorner}
                     alt=""
-                    priority
                     className="
                         absolute top-[13%] left-full z-0 h-auto w-[15cqw]
                         max-[699px]:top-[14%]
@@ -105,7 +103,6 @@ export default function Hero() {
                 <Image
                     src={triangle}
                     alt=""
-                    priority
                     className="
                         absolute top-[39%] left-[83%] z-0 h-auto w-[13.5cqw]
                         max-[699px]:hidden
@@ -120,7 +117,6 @@ export default function Hero() {
                 <Image
                     src={ring}
                     alt=""
-                    priority
                     className="
                         absolute top-[62.5%] -left-5 z-10 h-auto w-[27cqw]
                         max-[699px]:hidden
@@ -137,7 +133,6 @@ export default function Hero() {
                 <Image
                     src={largeSpiral}
                     alt=""
-                    priority
                     className="
                         absolute top-[60.7%] left-[78.7%] z-0 h-auto w-[22cqw]
                         max-[699px]:hidden
@@ -154,7 +149,6 @@ export default function Hero() {
                 <Image
                     src={ellipse}
                     alt=""
-                    priority
                     className="
                         absolute top-[52%] left-[9.5%] z-0 h-auto w-[81cqw]
                         max-[699px]:top-[85%]
