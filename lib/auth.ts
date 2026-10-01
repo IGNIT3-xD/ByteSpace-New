@@ -9,12 +9,17 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification: false, // Allows users to sign in immediately without verifying email
+    requireEmailVerification: false,
   },
   socialProviders: {
     google: {
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     },
   },
+  // Ensure exact URLs (no wildcards) are listed here
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://byte-space-new-two.vercel.app",
+  ],
 });

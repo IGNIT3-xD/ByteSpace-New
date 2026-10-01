@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, ShoppingBag, User, LogOut, ChevronDown } from "lucide-react";
-import { useSession, signOut } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -14,14 +14,14 @@ const Navbar = () => {
     const dropdownRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
 
-    const { data: session, isPending } = useSession();
+    const { data: session, isPending } = authClient.useSession();
 
     const closeMenu = () => {
         setIsOpen(false);
     };
 
     const handleSignOut = async () => {
-        await signOut({
+        await authClient.signOut({
             fetchOptions: {
                 onSuccess: () => {
                     toast.success("Signed out successfully");
